@@ -7,28 +7,28 @@ After you run and find a miss, add a short correction entry under that case in a
 later commit.
 
 ## P01
-Replace this line with the rule that decides this case.
+The coercion ladder runs logical, integer, double, character. Since 3.5 is a double, the logical and integer values are converted to double. The value is [1,2,3.5] with length three and no dimensions.
 
 ## P02
-Replace this line with the rule that decides this case.
+The coercion ladder makes character the final type when a character value is included. The integer and logical values become strings, so the value is ["1","2","TRUE"] with length three and no dimensions.
 
 ## P03
-Replace this line with the rule that decides this case.
+R recycles the shorter vector to match the longer one during addition. The value is [11L,22L,31L,42L] with integer type, length four, and no dimensions.
 
 ## P04
-Replace this line with the rule that decides this case.
+Positive indexing selects the third and first elements in that order. The original names are preserved, so the value is [third=9L,first=8L] with integer type, length two, and no dimensions.
 
 ## P05
-Replace this line with the rule that decides this case.
+Negative indexing removes the second element from the vector. The value is [4L,9L] with integer type, length two, and no dimensions.
 
 ## P06
-Replace this line with the rule that decides this case.
+The condition selects values that are missing or greater than 10. The missing integer is included because is.na() detects it, so the value is [NA,12L] with integer type, length two, and no dimensions.
 
 ## P07
-Replace this line with the rule that decides this case.
+A factor stores its category labels using integer codes internally. The value is [1L,2L,1L] with integer type, length three, and no dimensions.
 
 ## P08
-Replace this line with the rule that decides this case.
+A list can store elements with different types without coercing them into one common type. The value is [scores=[3L,5L],label="A"] with list type, length two, and no dimensions.
 
 ## P09
 Replace this line with the rule that decides this case.
