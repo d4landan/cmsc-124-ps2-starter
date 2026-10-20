@@ -27,6 +27,8 @@ The condition selects values that are missing or greater than 10. The missing in
 ## P07
 A factor stores its category labels using integer codes internally. The value is [1L,2L,1L] with integer type, length three, and no dimensions.
 
+Correction: I predicted [1,2,1], but R printed factor[low,high,low];levels=[low,high]. The type, length, and dimensions were correct. I misread the factor's underlying integer codes as its actual printed values, overlooking that the value field lists each element’s label and the levels, while the integer codes only show up as the storage that typeof() reports.
+
 ## P08
 A list can store elements with different types without coercing them into one common type. The value is [scores=[3L,5L],label="A"] with list type, length two, and no dimensions.
 
