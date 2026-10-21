@@ -1,10 +1,11 @@
 # Vector and Scalar Evaluation
 
-Replace this paragraph after your checks pass. Trace one input, including the
-missing value, through `clean_scores_vector()` and `clean_scores_scalar()`.
-Compare the two evaluation models, identify where recycling would change the
-answer, and explain which implementation you would keep in an R program.
-
 The sample input passed to both functions, clean_scores_vector(), and clean_scores_scalar(), is c(7,NA_real_,12,4). In the first adjustment in clean_scores_vector(), the NA values are converted to 0, while the rest are multiplied by 2. In the second adjustment, all the values greater than 20 would be converted to the max value 20, whereas the other values remain the same. Passing the same input through clean_scores_scalar() gives the same result of [1] 14 0 20 8. The [1] is an R's index marker to indicate the position of the first value in that line, although the naming would become different if the name is already given inside the input such as c(a=7, b=5). The names remain the same, while a is paired with 14, and b is paired with 10. 
 
 As for recycling, the clean_scores_scalar() manage repetition with a for loop, thus no recycling occurs. While clean_scores_vector() relies on recycling the 2 in scores*2. As every score is multiplied by 2, the same could be said with 0 and 20. For the current input, recycling does not change answers however once the recycled value is no longer a one vector, then R would repeat by position and it might change answers. 
+
+The vector version performs operations on all elements at once through is.na(), ifelse(), multiplication, and logical subassignment. These make the code shorter because R applies the operations across the vector without needing to manually access each element. The scalar loop, on the other hand, makes the evaluation order visible because it checks each score individually, determines whether it is NA, and then assigns the adjusted value before moving to the next element.
+
+One concrete example of careless recycling is multiplying c(7, 12, 4) by c(2, 3). R repeats the shorter vector to match the length of the longer one, producing c(14, 36, 8), with a warning because the lengths are not multiples of each other. This differs from the intended result of doubling every score, which is c(14, 24, 8).
+
+I would keep the vector implementation in a typical R program because it is concise, readable, and generally more efficient for processing large vectors. However, the scalar implementation is useful for understanding how each value is evaluated and for debugging individual cases. Its tradeoff is that it requires more code and may be slower, while the vector version requires greater awareness of how R handles recycling and missing values.
