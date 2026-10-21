@@ -104,7 +104,7 @@ build_roster <- function(student_names, groups, scores) {
     data.frame(
         name = student_names,
         group = group_factor,
-        raw_score = ifelse(scores==0, NA, score/2),
+        raw_score =  unname(scores),
         adjusted_score = adjustment,
         passed = passed,
         stringsAsFactors = FALSE
